@@ -1,11 +1,9 @@
 <?php
-
     require_once('db.php');
-    
-    
-    function getUserNotifications($userName){
+
+    function getMessages($sender, $receiver){
         $con = getConnection();
-        $sql = "select * from Notifications where userName='{$userName}' order by time desc";
+        $sql = "select * from Chats where (sender='{$sender}' and receiver='{$receiver}') or (sender='{$receiver}' and receiver='{$sender}') order by time";
         $result = mysqli_query($con, $sql);
 
         if(!$result) {
@@ -14,14 +12,15 @@
 
         return $result;
     }
+    
 
-    function createNotification($userName, $description){
+    function sendMessage($sender, $receiver, $message){
         $con = getConnection();
 
         $time = date_create()->format('Y-m-d H:i:s');
         $id = uniqid();
 
-        $sql = "insert into Notifications (userName, description, time, id) values ('{$userName}', '{$description}', '{$time}', '{$id}')";
+        $sql = "insert into Chats (sender, receiver, message, time, id) values ('{$sender}', '{$receiver}', '{$message}', '{$time}', '{$id}')";
 
         $result = mysqli_query($con, $sql);
         if($result){
@@ -29,11 +28,12 @@
         }else{
             return false;
         }
+
     }
 
-    function deleteNotification($id){
+    function deleteChatsByUser($userName){
         $con = getConnection();
-        $sql = "delete from Notifications where id = '{$id}'";
+        $sql = "delete from Chats where sender = '{$userName}' or receiver = '{$userName}'";
         $result = mysqli_query($con, $sql);
         
         if(!$result){
@@ -43,22 +43,10 @@
         }
     }
 
-    function deleteNotificationsByUser($userName){
+    function updateChatSender($userName, $userNameNew){
         $con = getConnection();
-        $sql = "delete from Notifications where userName = '{$userName}'";
-        $result = mysqli_query($con, $sql);
         
-        if(!$result){
-            return false;
-        }else{
-            return true;
-        }
-    }
-
-    function updateNotificationUserName($userName, $userNameNew){
-        $con = getConnection();
-
-        $sql = "update Notifications set userName = '{$userNameNew}' where userName = '{$userName}'";
+        $sql = "update Chats set sender = '{$userNameNew}' where sender = '{$userName}'";
         $result = mysqli_query($con, $sql);
         if(!$result){
             return false;
@@ -67,6 +55,15 @@
         }
     }
 
-
-    
+    function updateChatReceiver($userName, $userNameNew){
+        $con = getConnection();
+        
+        $sql = "update Chats set receiver = '{$userNameNew}' where receiver = '{$userName}'";
+        $result = mysqli_query($con, $sql);
+        if(!$result){
+            return false;
+        }else{
+            return true;
+        }
+    }
 ?>

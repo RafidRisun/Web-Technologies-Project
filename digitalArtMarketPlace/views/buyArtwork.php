@@ -1,5 +1,6 @@
 <?php
-    session_start();
+    // session_start();
+    require_once('../controllers/sessionCheck.php');
     require_once('../models/artworkModel.php');
     require_once('../models/userModel.php');
 
@@ -36,7 +37,28 @@
     <title>Buy Artwork</title>
 </head>
 <body>
+
+        
+
+
     <center>
+
+        <table width="100%">
+                <tr>
+                    <td colspan="8"><a href=homepage.php><img src="../assets/head.PNG"></a></td>
+                    <td>
+                        <a href="user.php" >
+                            User
+                        </a><br>
+                        <a href="menu.html" >
+                            Menu
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        <table>
+
+
         <h2>Buy Artwork</h2>
         <img src="<?php echo $artwork['image']?>" alt="" width="350px">
         <table>
@@ -50,11 +72,11 @@
             </tr>
             <tr>
                 <td><b>Price</b></td>
-                <td>:<?php echo $artwork['price'] ?> ArtCoins</td>
+                <td>:<?php echo $artwork['price'] ?> ArtCoin</td>
             </tr>
             <tr>
                 <td><b>Your Balance</b></td>
-                <td>:<?php echo $currentUser['balance'] ?> ArtCoins</td>
+                <td>:<?php echo $currentUser['balance'] ?> ArtCoin</td>
             </tr>
         </table>
 
@@ -62,7 +84,9 @@
             if($artwork['price'] > $currentUser['balance']){
                 echo "<b>You Do Not Have Sufficient Balance To Buy This Artwork!<b>";
             }else{
+                $transactionResult = $currentUser['balance'] - $artwork['price'];
                 echo "<a href='../controllers/buyArtworkCheck.php?id={$artworkId}'><button>Confirm Purchase</button></a>";
+                echo "<br>Balance After Purchase: {$transactionResult} ArtCoin";
             }
         ?>
         

@@ -1,6 +1,8 @@
 <?php
     session_start();
+    require_once('sessionCheck.php');
     require_once('../models/artworkModel.php');
+    require_once('../models/notificationModel.php');
     $currentUserName = $_SESSION['currentUserName'];
     
     $artworkName = $_REQUEST['artworkName'];
@@ -82,6 +84,7 @@
         $status = addArtwork($artwork);
         if($status){
             echo 'Artwork Successfuly Added!';
+            createNotification($currentUserName, "Artwork: {$artwork['artworkName']} Added With Price: {$artwork['price']} ArtCoin");
             header("location: ../views/user.php");
         }else{
             echo 'Artwork Add Unsuccessful!';

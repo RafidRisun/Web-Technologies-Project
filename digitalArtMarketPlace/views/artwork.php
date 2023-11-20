@@ -1,5 +1,6 @@
 <?php 
-    session_start();
+    // session_start();
+    require_once('../controllers/sessionCheck.php');
     require_once('../models/artworkModel.php');
     $userName = $_SESSION['currentUserName'];
     $artId = $_REQUEST['id'];

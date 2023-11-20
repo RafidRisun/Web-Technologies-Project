@@ -1,3 +1,8 @@
+<?php
+    require_once('../controllers/sessionCheck.php');
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +12,22 @@
 </head>
 <body>
     <center>     
+    <table width="100%">
+                <tr>
+                    <td colspan="8"><a href=homepage.php><img src="../assets/head.PNG"></a></td>
+                    <td>
+                        <a href="user.php" >
+                            User
+                        </a><br>
+                        <a href="menu.html" >
+                            Menu
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        <table>
+
+
         <h2>Add Artwork</h2>
     
         <form action="../controllers/addArtworkCheck.php" method="post" enctype="multipart/form-data">

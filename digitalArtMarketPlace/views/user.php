@@ -1,5 +1,6 @@
 <?php
-    session_start();
+    // session_start();
+    require_once('../controllers/sessionCheck.php');
     require_once('../models/userModel.php');
     require_once('../models/artworkModel.php');
     $userName = $_SESSION['currentUserName'];
@@ -27,7 +28,8 @@
     <title><?php echo "User ".$user['userName'] ?></title>
 </head>
 <body>
-            <table width="100%">
+    <center>
+    <table width="100%">
                 <tr>
                     <td colspan="8"><a href=homepage.php><img src="../assets/head.PNG"></a></td>
                     <td>
@@ -40,7 +42,9 @@
                     </td>
                 </tr>
             </table>
-    <center>
+        <table>
+
+
         
         <h2><?php echo $user['userName'] ?></h2>
     </center>
@@ -104,7 +108,6 @@
                     </td>
                     <td >
                         <img src="<?php echo $user['profilePicture'] ?>" alt="" width="250px"> <br>
-                        <!-- <input type="submit" name="edit" value="Edit"> -->
                     </td>
                     
                 </tr>
@@ -112,6 +115,24 @@
 
             <table>
                 <tr>
+                    <td>
+                        <?php if($user['type'] == "Artist") { ?>
+                            <a href="addArtwork.php">
+                                <button>Add Artwork</button>
+                            </a>
+                        <?php }?>
+                    </td>
+                    <td>
+                        <a href="notifications.php">
+                            <button>Notifications</button>
+                        </a>
+                    </td>
+
+                    <td>
+                        <a href="profile.php?userName=<?php echo $user['userName'] ?>">
+                            <button>Public Profile</button>
+                        </a>
+                    </td>
                     <td>
                         <a href="editUser.php">
                             <button>Edit Details</button>
@@ -123,26 +144,9 @@
                         </a>
                     </td>
                     <td>
-                        <a href="profile.php?userName=<?php echo $user['userName'] ?>">
-                            <button>Public Profile</button>
-                        </a>
-                    </td>
-                    <td>
-                        <a href="notifications.php">
-                            <button>Notifications</button>
-                        </a>
-                    </td>
-                    <td>
                         <a href="../controllers/logout.php">
                             <button>Log Out</button>
                         </a>
-                    </td>
-                    <td>
-                        <?php if($user['type'] == "Artist") { ?>
-                            <a href="addArtwork.php">
-                                <button>Add Artwork</button>
-                            </a>
-                        <?php }?>
                     </td>
 
 

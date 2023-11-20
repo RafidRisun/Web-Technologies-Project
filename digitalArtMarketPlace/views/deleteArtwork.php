@@ -1,5 +1,6 @@
 <?php
-    session_start();
+    // session_start();
+    require_once('../controllers/sessionCheck.php');
     $user = $_SESSION['currentUserName'];
     $id = $_REQUEST['id'];
 

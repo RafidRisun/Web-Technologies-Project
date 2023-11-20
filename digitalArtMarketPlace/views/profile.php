@@ -1,6 +1,6 @@
 <?php
-    session_start();
-    
+    // session_start();
+    require_once('../controllers/sessionCheck.php');
     require_once('../models/userModel.php');
     require_once('../models/artworkModel.php');
 
@@ -33,8 +33,9 @@
     <title><?php echo $user['userName']." Profile"?></title>
 </head>
 <body>
-    <form method="post" action="" enctype="">
-            <table width="100%">
+    <center>
+
+        <table width="100%">
                 <tr>
                     <td colspan="8"><a href=homepage.php><img src="../assets/head.PNG"></a></td>
                     <td>
@@ -47,8 +48,8 @@
                     </td>
                 </tr>
             </table>
-    </form> 
-    <center>
+        <table>
+
         
         <h2><?php echo $user['userName'] ?></h2>
     </center>
@@ -100,6 +101,20 @@
                         <img src="<?php echo $user['profilePicture'] ?>" alt="" width="150px"> <br>
                     </td>
                     
+                </tr>
+            </table>
+
+            <table>
+                <tr>
+                    <td>
+                        <?php if($user['userName'] != $currentUserName) { ?>
+                            <a href="message.php?userName=<?php echo $user['userName'] ?>#message">
+                                <button>Send Message</button>
+                            </a>
+                        <?php }?>
+                    </td>
+                    
+
                 </tr>
             </table>
 </center>

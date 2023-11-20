@@ -1,4 +1,5 @@
 <?php
+    require_once('../controllers/sessionCheck.php');
     require_once('../models/userModel.php');
     require_once('../models/artworkModel.php');
     $trendingArtist = getTrendingArtist();

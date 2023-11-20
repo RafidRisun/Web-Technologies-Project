@@ -1,7 +1,10 @@
 <?php
-    session_start();
+    // session_start();
+    require_once('sessionCheck.php');
     require_once('../models/userModel.php');
     require_once('../models/artworkModel.php');
+    require_once('../models/notificationModel.php');
+    require_once('../models/chatModel.php');
 
     $userName = $_SESSION['currentUserName'];
     $user = getUser($userName);
@@ -114,15 +117,22 @@
         $status1 = updateUser($userName, $user);
         $status2 = updateOwnerName($userName, $updatedUsername);
         $status3 = updateArtistName($userName, $updatedUsername);
+        $status4 = updateNotificationUserName($userName, $updatedUsername);
+        $status5 = updateChatSender($userName, $updatedUsername);
+        $status6 = updateChatReceiver($userName, $updatedUsername);
 
         
-        if($status1 && $status2 && $status3){
+        if($status1 && $status2 && $status3 && $status4 && $status5 && $status6){
             echo 'User Updated Successfuly';
             $_SESSION['currentUserName'] = $user['userName'];
+            createNotification($user['userName'], "Your Account Details Were Recently Updated");
+
             header("location: ../views/user.php");
+
         }else{
             echo 'User Update Unsuccessful!';
         }
+
 
     }
 

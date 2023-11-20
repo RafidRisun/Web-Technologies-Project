@@ -12,7 +12,7 @@
         if ($status){
             $_SESSION['flag'] = 'true';
             $_SESSION['currentUserName'] = $userName;
-            header("location: ../views/homepage.php?userName={$userName}");
+            header("location: ../views/homepage.php");
 
         }else{
             echo "Invalid User!";

@@ -4,11 +4,33 @@
     </header>
     <body>
         <center>
+            <table width="100%">
+                <tr>
+                    <td colspan="8"><a href=homepage.php><img src="../assets/head.PNG"></a></td>
+                    <td>
+                        <a href="user.php" >
+                            User
+                        </a><br>
+                        <a href="menu.html" >
+                            Menu
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        <table>
             Search by User name:
             <form method="post" action="../controllers/searchCheck.php">
-                <input type="text" name="userName" value="">
-                <input type="submit" name="submit" value="search">
+                <input type="text" id='name' name="userName" value="">
+                <input type="submit" name="submit" value="search" onclick="searchfunc()">
             </form>
         </center>
+        <script>
+            function searchfunc(){
+                let name = document.getElementById('name').value;
+                if(name==''){
+                    alert("Enter a User Name!");
+                }
+            }
+        </script>
     </body>
 </html>

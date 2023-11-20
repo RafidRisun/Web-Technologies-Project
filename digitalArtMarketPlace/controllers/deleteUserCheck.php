@@ -1,7 +1,10 @@
 <?php
-    session_start();
+    // session_start();
+    require_once('sessionCheck.php');
     require_once('../models/userModel.php');
     require_once('../models/artworkModel.php');
+    require_once('../models/notificationModel.php');
+    require_once('../models/chatModel.php');
 
     $userName = $_SESSION['currentUserName'];
     $user = getUser($userName);
@@ -28,10 +31,11 @@
     if($isPasswordValid){
         $status1 = deleteUser($userName);
         $status2 = deleteArtworksByUser($userName);
-        
+        $status3 = deleteNotificationsByUser($userName);
+        $status4 = deleteChatsByUser($userName);
 
         
-        if($status1 && $status2){
+        if($status1 && $status2 && $status3 && $status4){
             echo 'User Deleted Successfuly';
             unlink($_SESSION['currentUserName']);
 

@@ -1,6 +1,6 @@
 <?php
     require_once('../models/userModel.php');
-
+    require_once('sessionCheck.php');
     $userName = $_REQUEST['userName'];
     $user = getUser($userName);
 

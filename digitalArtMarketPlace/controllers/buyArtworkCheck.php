@@ -1,5 +1,6 @@
 <?php
-    session_start();
+    // session_start();
+    require_once('sessionCheck.php');
     require_once('../models/artworkModel.php');
     require_once('../models/userModel.php');
     require_once('../models/notificationModel.php');
@@ -18,10 +19,14 @@
         $sellerUser['balance'] = $sellerUser['balance'] + $artwork['price'];
         $artwork['ownerName'] = $buyerUser['userName'];
 
-        if(updateArtwork($artwork) && updateUser($buyerUserName, $buyerUser) && updateUser($sellerUserName, $sellerUser)){
+        $status1 = updateArtwork($artwork);
+        $status2 = updateUser($buyerUserName, $buyerUser);
+        $status3 = updateUser($sellerUserName, $sellerUser);
+        
+        if($status1 && $status2 && $status3){
             echo 'Purchase Successful!';
-            createNotification($buyerUserName, "You Have Purchased {$artwork['artworkName']} From {$sellerUserName} For {$artwork['price']} ArtCoin!");
-            createNotification($sellerUserName, "{$buyerUserName} Has Purchased {$artwork['artworkName']} From You For {$artwork['price']} ArtCoin!");
+            createNotification($buyerUserName, "You Have Purchased Artwork: {$artwork['artworkName']} From {$sellerUserName} For {$artwork['price']} ArtCoin");
+            createNotification($sellerUserName, "{$buyerUserName} Has Purchased Artwork: {$artwork['artworkName']} From You For {$artwork['price']} ArtCoin");
             header("location: ../views/user.php");
 
         }else{

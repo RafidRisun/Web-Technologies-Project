@@ -1,5 +1,6 @@
 <?php
-    session_start();
+    // session_start();
+    require_once('sessionCheck.php');
     require_once("../models/userModel.php");
     require_once("../models/artworkModel.php");
     $password = $_REQUEST['password'];

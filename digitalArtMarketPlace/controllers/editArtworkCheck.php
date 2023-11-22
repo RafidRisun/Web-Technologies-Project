@@ -6,11 +6,11 @@
     $currentUserName = $_SESSION['currentUserName'];
     
 
-    $artworkName = $_REQUEST['artworkName'];
-    $description = $_REQUEST['description'];
-    $price = $_REQUEST['price'];
-    $purchaseAble = $_REQUEST['purchaseAble'];
-    $id = $_REQUEST['id'];
+    $artworkName = $_POST['artworkName'];
+    $description = $_POST['description'];
+    $price = $_POST['price'];
+    $purchaseAble = $_POST['purchaseAble'];
+    $id = $_POST['id'];
     $artwork = getArtwork($id);
 
     if($artworkName == ''){

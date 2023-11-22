@@ -17,7 +17,7 @@
     </head>
     <body>
         <center>
-        <form action="../controllers/editArtworkCheck.php?id=<?php echo $artId ?>" method="post" enctype="">
+        <form action="" method="post" enctype="" onsubmit="return editfunc();">
             <table width="100%">
                 <tr>
                     <td colspan="8"><a href=homepage.php><img src="../assets/head.PNG"></a></td>
@@ -73,6 +73,7 @@
                     </td>
                     <?php } ?>
                 </tr>
+                <input type = "text" id = "artId" name="artId" value="<?php echo $artId ?>" hidden>
                 <tr>
                     <td colspan = "2">
                         <input type="submit" name="submit" value="Apply Changes" onclick="editfunc()">
@@ -94,9 +95,35 @@
             let price = document.getElementById('price').value;
             let yes = document.getElementById('yes').checked;
             let no = document.getElementById('no').checked;
-            if(name == '' || description=='' || price=='' || (yes=='' && no==''))
+            let id =document.getElementById('artId').value;
+            let purchaseAble = "";
+            if(yes == true)
+            {
+                purchaseAble = "Yes";
+            }
+            else if(no == true)
+            {
+                purchaseAble = "No";
+            }
+
+            if(name == '' || description=='' || price=='' || purchaseAble=='')
             {
                 alert("Missing Information!");
+                return false;
+            }
+            else
+            {
+                let xhttp = new XMLHttpRequest();
+
+                xhttp.open('POST', '../controllers/editArtworkCheck.php', true);
+                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhttp.onreadystatechange = function(){
+                    if(this.readyState == 4 && this.status == 200){
+                        alert("ArtWork Edited!");
+                    }
+                }
+
+                xhttp.send('artworkName='+name+'&&description='+description+'&&price='+price+'&&purchaseAble='+purchaseAble+'&&id='+id);
             }
         }
     </script>

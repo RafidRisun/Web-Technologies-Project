@@ -32,6 +32,13 @@
         $user = mysqli_fetch_assoc($result);
         return $user;
     }
+    function searchUser($userName){
+        $con = getConnection();
+        $sql = "select * from Users where userName like '%{$userName}%'";
+        $result = mysqli_query($con, $sql);
+
+        return $result;
+    }
 
     function adduser(){
 

@@ -77,6 +77,29 @@
             return true;
         }
     }
+
+    function editArtwork($artworkName, $description, $price, $purchaseAble, $id){
+        $con = getConnection();
+        
+        // $addingDate = $artwork['addingDate'];
+        // $artistName = $artwork['artistName'];
+        // $artworkName = $artwork['artworkName'];
+        // $description = $artwork['description'];
+        // $id = $artwork['id'];
+        // $image = $artwork['image'];
+        // $views = $artwork['views'];
+        // $ownerName = $artwork['ownerName'];
+        // $price = $artwork['price'];
+        // $purchaseAble = $artwork['purchaseAble'];
+        
+        $sql = "update Artworks set artworkName = '{$artworkName}', description = '{$description}', price = {$price}, purchaseAble = '{$purchaseAble}' where id = '{$id}'";
+        $result = mysqli_query($con, $sql);
+        if(!$result){
+            return false;
+        }else{
+            return true;
+        }
+    }
     
     function updateOwnerName($ownerName, $ownerNameNew){
         $con = getConnection();

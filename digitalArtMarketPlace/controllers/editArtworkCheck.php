@@ -30,14 +30,9 @@
         return;
     }
 
-    $artwork['artworkName']= $artworkName;
-    $artwork['description']= $description;
-    $artwork['price']= $price; 
-    $artwork['purchaseAble']= $purchaseAble;
-
-    $up = updateArtwork($artwork);
+    $up = editArtwork($artworkName, $description, $price, $purchaseAble, $id);
     if($up == True) {
-        echo 'Artwork has been Updated!';
+        echo "Artwork has been Updated!";
     }
 
 

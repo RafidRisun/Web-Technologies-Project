@@ -19,16 +19,32 @@
             </table>
         <table>
             Search by User name:
-            <form method="post" action="../controllers/searchCheck.php">
-                <input type="text" id='name' name="userName" value="">
-                <input type="submit" name="submit" value="search" onclick="searchfunc()">
+            <form method="post">
+                <input type="text" id='term' name="userName" value="">
+                <input type="button" id="button" name = "button" value = "Search" onclick="searchfunc()">
             </form>
+            <table id='result'></table>
         </center>
         <script>
             function searchfunc(){
-                let name = document.getElementById('name').value;
+                let name = document.getElementById('term').value;
                 if(name==''){
                     alert("Enter a User Name!");
+                }
+                else{
+                    let xhttp = new XMLHttpRequest();
+
+                
+
+                    xhttp.open('POST', '../controllers/searchCheck.php', true);
+                    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                    xhttp.onreadystatechange = function(){
+                        if(this.readyState == 4 && this.status == 200){
+                            document.getElementById('result').innerHTML = this.responseText;
+                        }
+                    }
+
+                    xhttp.send('std='+name);
                 }
             }
         </script>

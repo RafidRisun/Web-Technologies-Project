@@ -46,7 +46,7 @@
                         <b>Description:</b>
                     </td>
                     <td>
-                        <input type="text" id='description' name="description" value="<?php echo $art['description'] ?>">
+                        <input type="text" id='description' name="description" value="<?php echo $art['description'] ?>"><p id='description'></p>
                     </td>
                 </tr>
                 <tr>
@@ -54,7 +54,7 @@
                         <b>Current Price:</b>
                     </td>
                     <td>
-                        <input type="text" id='price' name="price" value="<?php echo $art['price'] ?>">
+                        <input type="text" id='price' name="price" value="<?php echo $art['price'] ?>"><p id='price'></p>
                     </td>
                 </tr>
                 <tr>
@@ -71,12 +71,12 @@
                         <input type="radio" id='yes' name="purchaseAble" value="Yes" > Yes
                          <input type="radio" id='no' name="purchaseAble" value="No" checked> No
                     </td>
-                    <?php } ?>
+                    <?php } ?>                                                                          <p id='purchaseable'></p>
                 </tr>
                 <input type = "text" id = "artId" name="artId" value="<?php echo $artId ?>" hidden>
                 <tr>
                     <td colspan = "2">
-                        <input type="submit" name="submit" value="Apply Changes" onclick="editfunc()">
+                        <input type="button" name="submit" value="Apply Changes" onclick="return editfunc()">
                     </td>
                 </tr>
                 <tr>
@@ -86,6 +86,7 @@
                 </tr>
                 
         </table>
+        <div id='warning'></div>
     </form>
     </center>
     <script>
@@ -106,9 +107,20 @@
                 purchaseAble = "No";
             }
 
-            if(name == '' || description=='' || price=='' || purchaseAble=='')
-            {
-                alert("Missing Information!");
+            if(name == ''){
+                document.getElementById('warning').innerHTML = "Enter a name";
+                return false;
+            }
+            else if(description == ''){
+                document.getElementById('warning').innerHTML="Enter a description";
+                return false;
+            }
+            else if(price == ''){
+                document.getElementById('warning').innerHTML="Enter a price";
+                return false;
+            }
+            else if(purchaseAble == ''){
+                document.getElementById('warning').innerHTML="Enter purchasability";
                 return false;
             }
             else
@@ -119,11 +131,10 @@
                 xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                 xhttp.onreadystatechange = function(){
                     if(this.readyState == 4 && this.status == 200){
-                        alert("ArtWork Edited!");
+                        document.getElementById('warning').innerHTML= this.responseText;
                     }
                 }
-
-                xhttp.send('artworkName='+name+'&&description='+description+'&&price='+price+'&&purchaseAble='+purchaseAble+'&&id='+id);
+                xhttp.send('artworkName='+name+'&description='+description+'&price='+price+'&purchaseAble='+purchaseAble+'&id='+id);
             }
         }
     </script>

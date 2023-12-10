@@ -1,22 +1,19 @@
 <?php
     require_once('../models/userModel.php');
     require_once('sessionCheck.php');
-    $userName = $_REQUEST['userName'];
-    $user = getUser($userName);
+    $userName = $_POST['std'];
+    $result = searchUser($userName);
 
-    if($user == true){
-        echo "
-        <html>
-            <header>
-                <title>
-                    Search
-                </title>
-            </header>
-            <body>
-                <center>
-                    <a href='../views/profile.php?userName={$userName}'>{$userName}</a>
-                </center>
-            </body>
-        </html>";
+    $content = "<table>Results:";
+
+    while ($row = mysqli_fetch_assoc($result)) {
+        $content .= "<tr>
+                        <td><a href='../views/profile.php?userName={$row['userName']}'>{$row['userName']}</a></td>
+                    </tr>";
     }
+
+    $content .= "</table>";
+    
+    echo $content;
+
 ?>

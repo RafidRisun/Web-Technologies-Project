@@ -11,18 +11,9 @@
         echo "You Cannot Send Messages To Yourself!";
         return;
     }
-
+    
     $sender = getUser($senderUserName);
     $receiver = getUser($receiverUserName);
-
-    $messages = getMessages($sender['userName'], $receiver['userName']);
-
-
-
-    
-    
-
-
 
 ?>
 
@@ -33,6 +24,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo "Chat With ".$receiver['userName'] ?></title>
+    <link rel="stylesheet" href="../assets/styles/style.css">
 </head>
 <body>
     <center>
@@ -54,57 +46,18 @@
 
         <h2><?php echo $receiver['userName'] ?></h2>
         
-        <p>(This Is The Beginning Of This Conversation)</p>
-        <table>
+        <p class="generalText">(This Is The Beginning Of This Conversation)</p>
+        <table id="messages" class="generalText"></table>
                 
-                
-            <?php while($message = mysqli_fetch_assoc($messages)){ ?>
-                
-                <?php if($message['sender'] == $receiver['userName']) { ?>
-                    <tr>
-                        <td>
-                            <a href="profile.php?userName=<?php echo $receiver['userName'] ?>">
-                                <img src="<?php echo $receiver['profilePicture']?>" alt="" width="40px">
-                            </a>
-
-                        </td>
-                        
-                        <td>
-                            <?php echo $message['message']?>
-                        </td>
-                        <td colspan="3"></td>
-                    </tr>
-                    <?php } ?>
-                    
-                    <?php if($message['sender'] == $sender['userName']) { ?>
-                        <tr>
-                            <td colspan="3"></td>
-                            <td>
-                            <?php echo $message['message']?>
-                        </td>
-                        <td>
-                            <a href="user.php">
-                                <img src="<?php echo $sender['profilePicture']?>" alt="" width="40px">
-                            </a>
-                        </td>
-                    </tr>
-                    <?php } ?>
-                    
-                <?php } ?>
-                    
-                    
-                </table>
-                
-                <form action="../controllers/sendMessage.php" method="post">
-                    <input hidden type="text" name="receiver" value="<?php echo $receiver['userName']?>">
-                    <input type="text" name="message" value="" id="message">
-                    <input type="submit" name="submit" value="Send">
-                </form>
-        
+        <input hidden type="text" id="receiver" name="receiver" value="<?php echo $receiver['userName']?>">
+        <input hidden type="text" id="sender" name="sender" value="<?php echo $sender['userName']?>">
+        <input type="text" name="message" id="message" value="" id="message">
+        <input type="button" name="submit" value="Send" onclick="return sendMessage()">
+    
         
         </center>
         
-        
-    
+        <script src="../assets/js/messages.js"></script>
+
 </body>
 </html>

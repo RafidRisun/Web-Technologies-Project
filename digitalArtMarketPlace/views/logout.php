@@ -4,9 +4,9 @@
 
 ?>
 <html>
-    <header>
+    <head>
         <title>Log Out</title>
-    </header>
+    </head>
     <body>
         <center>Logged Out!</center>
     </body>

@@ -13,10 +13,6 @@
         return;
     }
     
-
-
-
-
     
 ?>
 
@@ -26,6 +22,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo "User ".$user['userName'] ?></title>
+    <link rel="stylesheet" href="../assets/styles/style.css">
 </head>
 <body>
     <center>
@@ -50,8 +47,12 @@
     </center>
     
     <center>
-            <table>
+            <table class="userInfoCard generalText" >
             <tr>
+                <td>
+                    <img class="profilePicture" src="<?php echo $user['profilePicture'] ?>" alt=""> <br>
+                </td>
+
                 <td>
                     <table >
                     <tr>
@@ -103,49 +104,45 @@
                     <?php }?>  
                     </table>
                 </td>
-                <td>
+                
                     
-                    </td>
-                    <td >
-                        <img src="<?php echo $user['profilePicture'] ?>" alt="" width="250px"> <br>
-                    </td>
                     
                 </tr>
             </table>
 
-            <table>
+            <table class="buttonsContainer">
                 <tr>
-                    <td>
+                    <td class="button">
                         <?php if($user['type'] == "Artist") { ?>
                             <a href="addArtwork.php">
-                                <button>Add Artwork</button>
+                                Add Artwork
                             </a>
                         <?php }?>
                     </td>
-                    <td>
+                    <td class="button">
                         <a href="notifications.php">
-                            <button>Notifications</button>
+                            Notifications
                         </a>
                     </td>
 
-                    <td>
+                    <td class="button">
                         <a href="profile.php?userName=<?php echo $user['userName'] ?>">
-                            <button>Public Profile</button>
+                            Public Profile
                         </a>
                     </td>
-                    <td>
+                    <td class="button">
                         <a href="editUser.php">
-                            <button>Edit Details</button>
+                            Edit Details
                         </a>
                     </td>
-                    <td>
+                    <td class="button">
                         <a href="deleteUser.php">
-                            <button>Delete Account</button>
+                            Delete Account
                         </a>
                     </td>
-                    <td>
+                    <td class="button">
                         <a href="../controllers/logout.php">
-                            <button>Log Out</button>
+                            Log Out
                         </a>
                     </td>
 
@@ -159,17 +156,17 @@
 
 
 <center>
-    <h3>Artworks</h3>
+    <h2>Artworks</h2>
 </center>
 
 <center>
 
-    <table>
+    <table class="artworksContainer">
         <tr>
             <?php while($artwork = mysqli_fetch_assoc($artworks)){ ?>
-            <td>
+            <td class="artworkCard">
                 <a href="artwork.php?id=<?php echo $artwork['id']?>">
-                    <img src="<?php echo $artwork['image'] ?>" alt="" width="150px">
+                    <img class="artwork" src="<?php echo $artwork['image'] ?>" alt="" >
                     <p><center><b> <?php echo $artwork['artworkName'] ?> </b></center> </p>
                     <p><center> <?php echo $artwork['price'] ?> ArtCoin </center></p>
                 </a>

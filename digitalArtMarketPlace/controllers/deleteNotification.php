@@ -12,11 +12,11 @@
     else{
         $status = deleteNotification($id);
         if(!$status){
-            echo "Notification Delte Fail!";
+            echo "Notification Delete Fail!";
         }
         else{
             echo "Notification Deleted!";
-            header("location: ../views/notifications.php");
+            // header("location: ../views/notifications.php");
         }
 
     }

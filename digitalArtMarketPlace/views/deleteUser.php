@@ -15,6 +15,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo "Delete ".$user['userName'] ?></title>
+    <link rel="stylesheet" href="../assets/styles/style.css">
 </head>
 <body>
 
@@ -39,10 +40,10 @@
     </center>
     
     <center>
-        <form action="../controllers/deleteUserCheck.php" method="post" enctype="multipart/form-data">
+        <form class="generalText" action="../controllers/deleteUserCheck.php" method="post" enctype="multipart/form-data">
 
         
-            <img src="<?php echo $user['profilePicture'] ?>" alt="" width="100px"> <br>
+            <img class="profilePicture" src="<?php echo $user['profilePicture'] ?>" alt="" width="100px"> <br>
             
             <table >
                     
@@ -53,17 +54,10 @@
                         </td>
                     </tr>
                     
-
-                    <tr>
-                        <td>
-                            <input type="submit" name="submit" value="Confirm">
-                        </td>
-
-                    </tr>
                     
             </table>
-            
-                    
+            <br>
+            <input type="submit" name="submit" value="Confirm">     
                     
         
                     

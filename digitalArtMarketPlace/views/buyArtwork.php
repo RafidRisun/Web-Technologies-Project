@@ -35,6 +35,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buy Artwork</title>
+    <link rel="stylesheet" href="../assets/styles/style.css">
 </head>
 <body>
 
@@ -60,8 +61,8 @@
 
 
         <h2>Buy Artwork</h2>
-        <img src="<?php echo $artwork['image']?>" alt="" width="350px">
-        <table>
+        <img class="artwork" src="<?php echo $artwork['image']?>" alt="" width="350px">
+        <table class="generalText">
             <tr>
                 <td><b>Name</b></td>
                 <td>:<?php echo $artwork['artworkName'] ?></td>

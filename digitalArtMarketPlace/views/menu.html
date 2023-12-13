@@ -1,22 +1,22 @@
 <html>
-    <header>
+    <head>
         <title>Menu</title>
-    </header>
+        <script src="../assets/JS/menu.js"></script>
+        <link rel="stylesheet" href="../assets/styles/rafid.css"/>
+    </head>
     <body>
         <center>
-            <table width="100%">
-                <tr>
-                    <td colspan="8"><a href=homepage.php><img src="../assets/head.PNG"></a></td>
-                    <td>
-                        <a href="user.php" >
+            <div id='topbarleft'>
+                <a href=homepage.html><img src="../assets/home.png"></a>
+                </div>
+    
+                <div id='topbarright'>
+                <a href="user.php" >
                             User
                         </a><br>
-                        <a href="menu.html" >
-                            Menu
-                        </a>
-                    </td>
-                </tr>
-            </table>
+                        <div onclick='menuFunc()'>
+                            <p id='menu'>Menu</p></div>
+                        </div>
         
             <a href="search.html">Search</a>
             <br>

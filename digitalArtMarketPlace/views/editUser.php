@@ -16,6 +16,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo "Edit ".$user['userName'] ?></title>
+    <link rel="stylesheet" href="../assets/styles/style.css">
 </head>
 <body>
     <center>
@@ -40,50 +41,56 @@
     </center>
     
     <center>
-        <form action="../controllers/editUserCheck.php" method="post" enctype="multipart/form-data">
+        <form action="../controllers/editUserCheck.php" method="post" enctype="multipart/form-data" onsubmit="return validate()">
 
         
-            <table>
+            <table class="generalText userInfoCard">
             <tr>
                 <td>
                     <table >
                     <tr>
                         <td><b>Username</b></td>
-                        <td>: <input type="text" name="userName" value="<?php echo $user['userName']?>"></td>             
+                        <td>: 
+                            <input type="text" name="userName" id="userName" value="<?php echo $user['userName']?>" onchange="checkDuplicateUserName()">
+                            <input hidden type="text" name="currentUserName" id="currentUserName" value="<?php echo $user['userName']?>" >
+                            <input hidden type="text" name="isNewUserNameValid" id="isNewUserNameValid" value="True" >
+                        </td>             
                     </tr>
                     <tr>
                         <td><b>First Name</b></td>
-                        <td>: <input type="text" name="firstName" value="<?php echo $user['firstName']?>"></td>
+                        <td>: <input type="text" name="firstName" id="firstName" value="<?php echo $user['firstName']?>"></td>
                     </tr>
                     <tr>
                         <td><b>Last Name</b></td>
-                        <td>: <input type="text" name="lastName" value="<?php echo $user['lastName']?>"></td>
+                        <td>: <input type="text" name="lastName" id="lastName"  value="<?php echo $user['lastName']?>"></td>
                     </tr>
                     <tr>
                         <td><b>Email</b></td>
-                        <td>: <input type="email" name="email" value="<?php echo $user['email']?>"></td>
+                        <td>: <input type="email" name="email" id="email" value="<?php echo $user['email']?>" onchange="checkDuplicateEmail()"></td>
+                        <input hidden type="text" name="currentEmail" id="currentEmail" value="<?php echo $user['email']?>" >
+                        <input hidden type="text" name="isNewEmailValid" id="isNewEmailValid" value="True" >
                     </tr>
                     <tr>
                         <td><b>Phone Number</b></td>
-                        <td>: <input type="text" name="phoneNumber" value="<?php echo $user['phoneNumber']?>"></td>
+                        <td>: <input type="text" name="phoneNumber" id="phoneNumber" value="<?php echo $user['phoneNumber']?>"></td>
                     </tr>
                     <tr>
                         <td><b>Gender</b></td>
                         <td>:
                             <?php if($user['gender'] == 'Male'){ ?>
-                                <input type="radio" name="gender" value="Male" checked> Male
-                                <input type="radio" name="gender" value="Female" > Female
-                                <input type="radio" name="gender" value="Other" > Other
+                                <input type="radio" name="gender" id="Male" value="Male" checked> Male
+                                <input type="radio" name="gender" id="Female" value="Female" > Female
+                                <input type="radio" name="gender" id="Other" value="Other" > Other
                             <?php }?>
                             <?php if($user['gender'] == 'Female'){ ?>
-                                <input type="radio" name="gender" value="Male" > Male
-                                <input type="radio" name="gender" value="Female" checked> Female
-                                <input type="radio" name="gender" value="Other" > Other
+                                <input type="radio" name="gender" id="Male" value="Male" > Male
+                                <input type="radio" name="gender" id="Female" value="Female" checked> Female
+                                <input type="radio" name="gender" id="Other" value="Other" > Other
                             <?php }?>
                             <?php if($user['gender'] == 'Other'){ ?>
-                                <input type="radio" name="gender" value="Male" > Male
-                                <input type="radio" name="gender" value="Female" > Female
-                                <input type="radio" name="gender" value="Other" checked> Other
+                                <input type="radio" name="gender" id="Male" value="Male" > Male
+                                <input type="radio" name="gender" id="Female" value="Female" > Female
+                                <input type="radio" name="gender" id="Other" value="Other" checked> Other
                             <?php }?>
                         </td>
                     </tr>
@@ -91,12 +98,12 @@
                         <td><b>Type</b></td>
                         <td>:
                             <?php if($user['type'] == 'Artist'){ ?>
-                                <input type="radio" name="type" value="Artist" checked> Artist
-                                <input type="radio" name="type" value="User" > User
+                                <input type="radio" name="type" id="Artist" value="Artist" checked> Artist
+                                <input type="radio" name="type" id="User" value="User" > User
                             <?php }?>
                             <?php if($user['type'] == 'User'){ ?>
-                                <input type="radio" name="type" value="Artist" > Artist
-                                <input type="radio" name="type" value="User" checked> User
+                                <input type="radio" name="type" id="Artist" value="Artist" > Artist
+                                <input type="radio" name="type" id="User" value="User" checked> User
                             <?php }?>
                         </td>
                     </tr>
@@ -109,25 +116,26 @@
                     <tr>
                         <td><b>Current Password</b></td>
                         <td>:
-                            <input type="password" name="password" value="" >
+                            <input type="password" id="password" name="password" value="" >
+                            <input hidden type="password" id="currentPassword" name="currentPassword" value="<?php echo $user['password']?>" >
                         </td>
                     </tr>
                     <tr>
                         <td><b>New Password</b></td>
                         <td>:
-                            <input type="password" name="newPassword" value="" >
+                            <input type="password" id="newPassword" name="newPassword" value="" >
                         </td>
                     </tr>
                     <tr>
                         <td><b>Retype Password</b></td>
                         <td>:
-                            <input type="password" name="retypePassword" value="" >
+                            <input type="password" id="retypePassword" name="retypePassword" value="" >
                         </td>
                     </tr>
                     <tr>
                         <td><b>Proflie Picture</b></td>
                         <td>:
-                        <input type="file" accept="image/*" name="profilePicture">
+                        <input type="file" accept="image/*" name="profilePicture" id="profilePicture" onchange="showUpdateProfilePicture()">
                         </td>
                     </tr>
 
@@ -148,7 +156,7 @@
                 
                     
                     <td >
-                        <img src="<?php echo $user['profilePicture'] ?>" alt="" width="350px"> <br>
+                        <img class="profilePicture"  src="<?php echo $user['profilePicture'] ?>" id="currentProfilePicture" alt=""> <br>
                     </td>
                     
                 </tr>
@@ -159,6 +167,7 @@
 
 
 
+<script src="../assets/js/editUser.js"></script>
 
 </body>
 </html>

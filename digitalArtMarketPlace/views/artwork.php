@@ -18,27 +18,27 @@
 <html>
 <header>
     <title>Artwork</title>
+    <script src="../assets/JS/artwork.js"></script>
+    <link rel="stylesheet" href="../assets/styles/rafid.css"/>
 </header>
 
+
+
 <body>
-    <center>
+
         
-        <form method="post" action="" enctype="">
-            <table width="100%">
-                <tr>
-                    <td colspan="8"><a href=homepage.php><img src="../assets/head.PNG"></a></td>
-                    <td>
-                        <a href="user.php" >
+            <div id='topbarleft'>
+                <a href=homepage.html><img src="../assets/home.png"></a>
+                </div>
+    
+                <div id='topbarright'>
+                <a href="user.php" >
                             User
                         </a><br>
-                        <a href="menu.html" >
-                            Menu
-                        </a>
-                    </td>
-                </tr>
-            </table>
-        </form> 
-
+                        <div onclick='menuFunc()'>
+                            <p id='menu'>Menu</p></div>
+                        </div>
+        <center>
         <h2>Artwork</h2><br>
         <img src="<?php echo $art['image'] ?>" width="600px"><br>
         <table>

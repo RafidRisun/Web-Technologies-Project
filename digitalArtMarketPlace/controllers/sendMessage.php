@@ -22,7 +22,6 @@
             }
             else{
                 echo "Message Sent!";
-                header("location: ../views/message.php?userName={$receiver}#message");
             }
         }
     }

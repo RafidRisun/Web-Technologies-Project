@@ -1,0 +1,40 @@
+#topbar{
+    float: left;
+    position: sticky;
+}
+
+body{
+    background-color: #2d2d2d;
+    font-family: arial;
+    color: white;
+}
+
+a{
+    color: white;
+}
+
+a:link {
+    text-decoration: none;
+  }
+  
+a:visited {
+    text-decoration: none;
+}
+
+#van{
+    position:relative;
+    left: 100px;
+    bottom: 50px;
+}
+
+#topbarright{
+    float: right;
+    bottom: 100px;
+    position: sticky;
+}
+
+#row1{
+    background-color: #353535;
+}
+
+

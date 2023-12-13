@@ -1,0 +1,38 @@
+<html>
+<head>
+    <title>Home</title>
+    <script src="../assets/JS/home.js"></script>
+    <link rel="stylesheet" href="../assets/styles/rafid.css"/>
+</head>
+
+<body onload="trendingArtist(); trendingArt(); newArt()">
+    
+            <div id='topbarleft'>
+            <a href=homepage.html><img src="../assets/home.PNG"></a>
+            </div>
+
+            <div id='topbarright'>
+            <a href="user.php" >
+                        User
+                    </a><br>
+                    <div onclick='menuFunc()'>
+                        <p id='menu'>Menu</p></div>
+                    </div>
+        
+            <div id="row1">
+            <h3>Trending Artists</h3>
+            <table id="result"></table>
+            </div>
+
+            <h3>Trending Arts</h3>
+            <table id="result2"></table>
+            </div>
+            
+            <div id="row1">
+                <h3>Newly Uploaded Artworks</h3>
+                <table id="result3"></table>
+            </div>
+            <center><p id='copyright'>Copyright 2023</p></center>
+</body>
+
+</html>

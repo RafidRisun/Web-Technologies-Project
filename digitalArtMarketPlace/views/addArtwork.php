@@ -9,6 +9,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Artwork</title>
+    <link rel="stylesheet" href="../assets/styles/style.css">
 </head>
 <body>
     <center>     
@@ -29,15 +30,18 @@
 
 
         <h2>Add Artwork</h2>
-    
-        <form action="../controllers/addArtworkCheck.php" method="post" enctype="multipart/form-data">
-            <table>
-                <tr>
+        
+        <form action="../controllers/addArtworkCheck.php" method="post" enctype="multipart/form-data" onsubmit="return validate()">
+        <div id="imagePreview" hidden >
+            <img class="artwork" id="uploadedImagePreview" src="" alt="" >
+        </div>
+        <table class="generalText">
+            <tr>
                 <td>
                     <b>Image</b> 
                 </td>
                 <td>:
-                <input type="file" accept="image/*" name="uploadedImage">
+                <input type="file" accept="image/*" id="uploadedImage" name="uploadedImage" onchange="showUploadedPicture()">
                 </td>
             </tr>
             <tr>
@@ -45,7 +49,7 @@
                     <b>Name</b> 
                 </td>
                 <td>:
-                    <input type="text" name="artworkName" value="">
+                    <input type="text" id="artworkName" name="artworkName" value="">
                 </td>
             </tr>
             <tr>
@@ -53,7 +57,7 @@
                     <b>Description</b> 
                 </td>
                 <td>:
-                    <textarea name="artworkDescription" id="" cols="20" rows="2"></textarea>
+                    <textarea name="artworkDescription" id="artworkDescription" cols="20" rows="2" ></textarea>
                 </td>
             </tr>
             <tr>
@@ -61,7 +65,7 @@
                     <b>Price</b> 
                 </td>
                 <td>:
-                    <input type="number" name="artworkPrice" value="0">
+                    <input type="number" id="artworkPrice"  name="artworkPrice" value="0">
                 </td>
             </tr>
             <tr>
@@ -69,10 +73,11 @@
                     <b>Purchaseable</b> 
                 </td>
                 <td>:
-                    <input type="radio" name="artworkPurchaseable" value="Yes" checked> Yes
-                    <input type="radio" name="artworkPurchaseable" value="No"> No
+                    <input type="radio" name="artworkPurchaseable" id="Yes" value="Yes" > Yes
+                    <input type="radio" name="artworkPurchaseable" id="No" value="No"> No
                 </td>
             </tr>
+            
             <tr>
                 <td>
                     <input type="submit" name= "submit" value="Add Artwork">
@@ -81,6 +86,6 @@
         </table>
     </form>
 </center>
-    
+<script src="../assets/js/addArtwork.js"></script>
 </body>
 </html>

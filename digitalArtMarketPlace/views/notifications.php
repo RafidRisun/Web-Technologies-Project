@@ -1,14 +1,6 @@
 <?php
     // session_start();
     require_once('../controllers/sessionCheck.php');
-    require_once('../models/notificationModel.php');
-    $userName = $_SESSION['currentUserName'];
-    $notifications = getUserNotifications($userName);
-
-    
-    
-
-
 
 ?>
 
@@ -18,7 +10,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $userName." Notifications" ?></title>
+    <title>Notifications</title>
+    <link rel="stylesheet" href="../assets/styles/style.css">
 </head>
 <body>
     <center>
@@ -36,23 +29,17 @@
                 </tr>
             </table>
         <table>
-
-
+            
         <h2>Notifications</h2>
         
-        
-            <?php while($notification = mysqli_fetch_assoc($notifications)){ ?>
-                
-                <b><?php echo $notification['description'] ?></b> | <?php echo $notification['time'] ?> | <a href="../controllers/deleteNotification.php?id=<?php echo $notification['id'] ?>">Delete</a>
-                <hr>
-            <?php } ?>
+        <div class="generalText" id="notifications"></div>
                     
                     
                 
-
-        
-        
+     
     </center>
+    <script src="../assets/js/notifications.js"></script>
+    
     
 </body>
 </html>

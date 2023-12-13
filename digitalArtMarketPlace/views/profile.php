@@ -31,6 +31,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $user['userName']." Profile"?></title>
+    <link rel="stylesheet" href="../assets/styles/style.css">
 </head>
 <body>
     <center>
@@ -55,8 +56,12 @@
     </center>
     
     <center>
-            <table>
+            <table class="userInfoCard generalText" >
             <tr>
+                <td>
+                    <img class="profilePicture" src="<?php echo $user['profilePicture'] ?>" alt="" width="150px"> <br>
+                </td>
+
                 <td>
                     <table >
                     <tr>
@@ -97,31 +102,29 @@
                 
                     
 
-                    <td >
-                        <img src="<?php echo $user['profilePicture'] ?>" alt="" width="150px"> <br>
-                    </td>
+                
                     
                 </tr>
             </table>
 
-            <table>
+            <table class="buttonsContainer">
+                <?php if($user['userName'] != $currentUserName) { ?>
                 <tr>
-                    <td>
-                        <?php if($user['userName'] != $currentUserName) { ?>
+                    <td class="button" >
                             <a href="message.php?userName=<?php echo $user['userName'] ?>#message">
-                                <button>Send Message</button>
+                                Send Message
                             </a>
-                        <?php }?>
-                    </td>
-                    
-
-                </tr>
+                        </td>
+                        
+                        
+                    </tr>
+                <?php }?>
             </table>
 </center>
 
 
 <center>
-    <h3>Artworks</h3>
+    <h2>Artworks</h2>
 </center>
 
 <center>
@@ -129,13 +132,13 @@
     <table>
         <tr>
             <?php while($artwork = mysqli_fetch_assoc($artworks)){ ?>
-            <td>
+            <td class="artworkCard">
                 <a href="artwork.php?id=<?php echo $artwork['id']?>">
-                    <img src="<?php echo $artwork['image'] ?>" alt="" width="150px">
+                    <img class="artwork" src="<?php echo $artwork['image'] ?>" alt="" width="150px">
                     <p><center><b> <?php echo $artwork['artworkName'] ?> </b></center> </p>
                     <p><center> <?php echo $artwork['price'] ?> ArtCoin </center></p>
+                    
                 </a>
-                
             </td>
             <?php   }?>
         </tr>

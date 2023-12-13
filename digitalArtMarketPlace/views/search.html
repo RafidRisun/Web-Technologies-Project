@@ -1,52 +1,29 @@
 <html>
-    <header>
+    <head>
         <title>Title</title>
-    </header>
+        <script src="../assets/JS/search.js"></script>
+        <link rel="stylesheet" href="../assets/styles/rafid.css"/>
+    </head>
     <body>
+        <div id='topbarleft'>
+            <a href=homepage.html><img src="../assets/home.png"></a>
+            </div>
+
+            <div id='topbarright'>
+            <a href="user.php" >
+                        User
+                    </a><br>
+                    <div onclick='menuFunc()'>
+                        <p id='menu'>Menu</p></div>
+                    </div>
         <center>
-            <table width="100%">
-                <tr>
-                    <td colspan="8"><a href=homepage.php><img src="../assets/head.PNG"></a></td>
-                    <td>
-                        <a href="user.php" >
-                            User
-                        </a><br>
-                        <a href="menu.html" >
-                            Menu
-                        </a>
-                    </td>
-                </tr>
-            </table>
         <table>
-            Search by User name:
+            Search by User Name:
             <form method="post">
                 <input type="text" id='term' name="userName" value="">
                 <input type="button" id="button" name = "button" value = "Search" onclick="searchfunc()">
             </form>
             <table id='result'></table>
         </center>
-        <script>
-            function searchfunc(){
-                let name = document.getElementById('term').value;
-                if(name==''){
-                    alert("Enter a User Name!");
-                }
-                else{
-                    let xhttp = new XMLHttpRequest();
-
-                
-
-                    xhttp.open('POST', '../controllers/searchCheck.php', true);
-                    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                    xhttp.onreadystatechange = function(){
-                        if(this.readyState == 4 && this.status == 200){
-                            document.getElementById('result').innerHTML = this.responseText;
-                        }
-                    }
-
-                    xhttp.send('std='+name);
-                }
-            }
-        </script>
     </body>
 </html>

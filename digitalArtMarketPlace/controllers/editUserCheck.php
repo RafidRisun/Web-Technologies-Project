@@ -20,6 +20,7 @@
 
     $imageSource = $_FILES['profilePicture']['tmp_name'];
     $imageDestination = "../assets/profilePictures/".$_FILES['profilePicture']['name'];
+    $profilePictureId = uniqid();
 
     $currentPassword = $_REQUEST['password'];
     $updatedNewPassword = $_REQUEST['newPassword'];
@@ -91,7 +92,7 @@
     if($imageSource){
         if(move_uploaded_file($imageSource, $imageDestination)){
             $imageExtension = pathinfo($imageDestination)['extension'];
-            $imageFileName = "../assets/profilePictures/".$userName.".".$imageExtension;
+            $imageFileName = "../assets/profilePictures/".$profilePictureId.".".$imageExtension;
             
             if(rename($imageDestination,$imageFileName)){
                 if(unlink($user['profilePicture'])){
@@ -110,6 +111,7 @@
         }
         else{
             echo 'Profile Picture Move Error!';         
+            
         }
     }
 

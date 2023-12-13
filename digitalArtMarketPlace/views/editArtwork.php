@@ -14,23 +14,22 @@
 <html>
     <head>
         <title>Edit Artwork</title>
+        <script src="../assets/JS/editArtwork.js"></script>
+        <link rel="stylesheet" href="../assets/styles/rafid.css"/>
     </head>
     <body>
-        <center>
-        <form action="" method="post" enctype="" onsubmit="return editfunc();">
-            <table width="100%">
-                <tr>
-                    <td colspan="8"><a href=homepage.php><img src="../assets/head.PNG"></a></td>
-                    <td>
-                        <a href="user.php" >
+            <div id='topbarleft'>
+                <a href=homepage.html><img src="../assets/home.png"></a>
+                </div>
+    
+                <div id='topbarright'>
+                <a href="user.php" >
                             User
                         </a><br>
-                        <a href="menu.html" >
-                            Menu
-                        </a>
-                    </td>
-                </tr>
-            </table>   
+                        <div onclick='menuFunc()'>
+                            <p id='menu'>Menu</p></div>
+                        </div>
+        <center>  
         <table>
             <h2>Edit Artwork</h2>
                 <tr>
@@ -87,56 +86,6 @@
                 
         </table>
         <div id='warning'></div>
-    </form>
     </center>
-    <script>
-        function editfunc(){
-            let name = document.getElementById('name').value;
-            let description = document.getElementById('description').value;
-            let price = document.getElementById('price').value;
-            let yes = document.getElementById('yes').checked;
-            let no = document.getElementById('no').checked;
-            let id =document.getElementById('artId').value;
-            let purchaseAble = "";
-            if(yes == true)
-            {
-                purchaseAble = "Yes";
-            }
-            else if(no == true)
-            {
-                purchaseAble = "No";
-            }
-
-            if(name == ''){
-                document.getElementById('warning').innerHTML = "Enter a name";
-                return false;
-            }
-            else if(description == ''){
-                document.getElementById('warning').innerHTML="Enter a description";
-                return false;
-            }
-            else if(price == ''){
-                document.getElementById('warning').innerHTML="Enter a price";
-                return false;
-            }
-            else if(purchaseAble == ''){
-                document.getElementById('warning').innerHTML="Enter purchasability";
-                return false;
-            }
-            else
-            {
-                let xhttp = new XMLHttpRequest();
-
-                xhttp.open('POST', '../controllers/editArtworkCheck.php', true);
-                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                xhttp.onreadystatechange = function(){
-                    if(this.readyState == 4 && this.status == 200){
-                        document.getElementById('warning').innerHTML= this.responseText;
-                    }
-                }
-                xhttp.send('artworkName='+name+'&description='+description+'&price='+price+'&purchaseAble='+purchaseAble+'&id='+id);
-            }
-        }
-    </script>
     </body>
 </html>

@@ -4,15 +4,14 @@
     $userName = $_POST['std'];
     $result = searchUser($userName);
 
-    $content = "<table>Results:";
+    $content = "<center><b>Results:</b><table>";
 
-    while ($row = mysqli_fetch_assoc($result)) {
-        $content .= "<tr>
-                        <td><a href='../views/profile.php?userName={$row['userName']}'>{$row['userName']}</a></td>
-                    </tr>";
+    while ($rows = mysqli_fetch_assoc($result)) {
+        $content .= "<tr><td>User Name</td><td>:<a href='../views/profile.php?userName={$rows['userName']}'>{$rows['userName']}</a></td></tr>
+                        <tr><td>Views</td><td>:{$rows['totalViews']}</td></tr>";
     }
 
-    $content .= "</table>";
+    $content .= "</table></center>";
     
     echo $content;
 

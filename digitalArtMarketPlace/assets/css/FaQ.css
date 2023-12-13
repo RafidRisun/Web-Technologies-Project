@@ -1,0 +1,39 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+form {
+    max-width: 400px;
+    padding: 20px;
+    background-color: #fff;
+    margin: 20px auto;
+}
+
+fieldset {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+legend {
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+}
+
+select, input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+input[type="submit"] {
+    background-color: #0050ef;
+    color: #fff;
+    cursor: pointer;
+}
+
